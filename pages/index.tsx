@@ -3,10 +3,19 @@ import * as React from 'react'
 // import Link from 'next/link'
 // import {useRouter} from 'next/router'
 
+let TO = null
 const Index = ({}) => {
   const [__count, __countSet] = React.useState(10)
+  const ___isExecuted = React.useRef(false)
 
   const endBattle = () => {
+    if (___isExecuted.current) {
+      return
+    }
+
+    __countSet(0)
+    ___isExecuted.current = true
+
     if (
       window.webkit &&
       window.webkit.messageHandlers.bridge &&
@@ -20,7 +29,7 @@ const Index = ({}) => {
     }
 
     console.log(
-      '%c Battle end command executed',
+      '%c Battle end command executed.',
       'background-color: green; color: white;'
     )
   }
@@ -33,7 +42,8 @@ const Index = ({}) => {
 
   React.useEffect(() => {
     if (__count > 0) {
-      window.setTimeout(() => {
+      window.clearTimeout(TO)
+      TO = window.setTimeout(() => {
         ticker()
       }, 1000)
     } else {
