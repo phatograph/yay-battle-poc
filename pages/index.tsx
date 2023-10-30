@@ -18,6 +18,11 @@ const Index = ({}) => {
     if (window.Android && window.Android.onButtonClick) {
       window.Android.onButtonClick('skipBtn')
     }
+
+    console.log(
+      '%c Battle end command executed',
+      'background-color: green; color: white;'
+    )
   }
 
   const ticker = () => {
@@ -31,6 +36,8 @@ const Index = ({}) => {
       window.setTimeout(() => {
         ticker()
       }, 1000)
+    } else {
+      endBattle()
     }
   }, [__count])
 
