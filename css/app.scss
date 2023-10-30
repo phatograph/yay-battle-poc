@@ -430,4 +430,16 @@ source {
   align-items: center;
   justify-content: center;
   min-height: 100dvh;
+
+  &__wrapper {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    gap: calc(var(--global-space) * 1);
+  }
+
+  .Button {
+    width: unset;
+  }
 }
